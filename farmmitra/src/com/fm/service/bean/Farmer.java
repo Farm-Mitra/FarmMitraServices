@@ -1,41 +1,19 @@
-package com.fm.bean;
+package com.fm.service.bean;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "farmers")
 public class Farmer {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "farmer_id")
 	private Long id;
-	  
-	@Column (name = "farmer_name")
 	private String farmerName;
-	
-	@Column (name = "farmer_address")
 	private String farmerAddress;
-	
-	@Column (name = "contact_no")
-	private String  contactNno;
-	
-	@Column (name = "date")
+	private String contactNno;
 	private Date date;
-	
-	
-	
+
 	public Farmer() {
-		
+
 	}
-	
+
 	public Farmer(Long id) {
 		super();
 		this.id = id;

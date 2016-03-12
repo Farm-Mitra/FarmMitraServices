@@ -7,10 +7,12 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.fm.bean.FarmVillage;
+import com.fm.bean.Farmer;
 import com.fm.util.HibernateUtil;
 
 public class FPCLDAO {
-	String FPCL_QUERY = "from FarmVillage fv where fv.fpcl.id = ?";
+	String FPCL_FARMVILLAGE_QUERY = "from FarmVillage fv where fv.fpcl.id = ?";
+	String FPCL_FARMER_QUERY = "from Farmer fv where fv.fpcl.id = ?";
 	
 	
 	public List<FarmVillage> getFarmVillageForFpcl(Long fpclid) {
@@ -18,7 +20,7 @@ public class FPCLDAO {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		try {
-			Query query = session.createQuery(FPCL_QUERY);
+			Query query = session.createQuery(FPCL_FARMVILLAGE_QUERY);
 			query.setParameter(0, fpclid);
 			data = query.list();
 		} catch (HibernateException e) {
@@ -30,9 +32,20 @@ public class FPCLDAO {
 	}
 
 
-	public List<com.fm.bean.FarmVillage> getFarmerForFpcl(long parseLong) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Farmer> getFarmerForFpcl(long fpclid) {
+		List<Farmer> data = null;
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+			Query query = session.createQuery(FPCL_FARMER_QUERY);
+			query.setParameter(0, fpclid);
+			data = query.list();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return data;
 	}
 
 

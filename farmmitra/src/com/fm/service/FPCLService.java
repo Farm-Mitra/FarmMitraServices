@@ -29,8 +29,8 @@ public class FPCLService {
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
 	public List<FarmVillage> getFarmerForFpcl(@PathParam("fpclid") String fpclid) {
-		List<com.fm.bean.FarmVillage> fvs = dao.getFarmerForFpcl(Long.parseLong(fpclid));
-		List<FarmVillage> farmVillages = ServiceUtil.convertPOJOList(fvs);
+		List<com.fm.bean.Farmer> fms = dao.getFarmerForFpcl(Long.parseLong(fpclid));
+		List<FarmVillage> farmVillages = ServiceUtil.convertPOJOList(fms);
 		return farmVillages;
 	}
 		

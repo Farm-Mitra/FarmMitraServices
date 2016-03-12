@@ -9,14 +9,13 @@ import org.apache.commons.beanutils.BeanUtils;
 import com.fm.service.bean.FarmVillage;
 
 public class ServiceUtil {
-	public static List<FarmVillage> convertPOJOList(List<com.fm.bean.FarmVillage> fvs) {
-		List<FarmVillage> farmVillages = new ArrayList<FarmVillage>();
+	public static List convertPOJOList(List fs) {
+		List fnew = new ArrayList();
 
-		for (com.fm.bean.FarmVillage fv : fvs) {
-			System.out.println(fv.toString());
-			FarmVillage farmVillage = new FarmVillage();
+		for (Object f : fs) {
+			FarmVillage fn = new FarmVillage();
 			try {
-				BeanUtils.copyProperties(farmVillage, fv);
+				BeanUtils.copyProperties(fn, f);
 			} catch (IllegalAccessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -24,18 +23,15 @@ public class ServiceUtil {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
-			System.out.println(farmVillage.toString());
-			farmVillages.add(farmVillage);
+			fnew.add(fn);
 		}
-		return farmVillages;
+		return fnew;
 	}
 
-	public static FarmVillage convertPOJO(com.fm.bean.FarmVillage fv) {
-		System.out.println(fv.toString());
-		FarmVillage farmVillage = new FarmVillage();
+	public static FarmVillage convertPOJO(Object f) {
+		FarmVillage fn = new FarmVillage();
 		try {
-			BeanUtils.copyProperties(farmVillage, fv);
+			BeanUtils.copyProperties(fn, f);
 		} catch (IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -43,9 +39,7 @@ public class ServiceUtil {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		System.out.println(farmVillage.toString());
-		return farmVillage;
+		return fn;
 	}
 
 }
