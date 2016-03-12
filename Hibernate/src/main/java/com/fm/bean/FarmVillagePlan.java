@@ -19,7 +19,7 @@ public class FarmVillagePlan {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "farm_plan_id")
+	@Column(name = "farm_village_plan_id")
 	private Long id;	
 	
 	@OneToOne

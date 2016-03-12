@@ -45,6 +45,10 @@ public class FarmVillage {
 
 	@OneToMany(mappedBy = "farmVillage", fetch = FetchType.EAGER)
 	private Set<Farm> farms;
+	
+	@OneToOne
+	@JoinColumn(name = "farm_village_id")
+	private FarmVillagePlan farmVillagePlan;
 
 	@ManyToOne
 	@JoinColumn(name = "fpcl_id")
@@ -138,6 +142,14 @@ public class FarmVillage {
 
 	public Device getDevice() {
 		return device;
+	}
+
+	public FarmVillagePlan getFarmVillagePlan() {
+		return farmVillagePlan;
+	}
+
+	public void setFarmVillagePlan(FarmVillagePlan farmVillagePlan) {
+		this.farmVillagePlan = farmVillagePlan;
 	}
 
 	@Override

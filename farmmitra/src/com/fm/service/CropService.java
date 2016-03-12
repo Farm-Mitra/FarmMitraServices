@@ -37,8 +37,8 @@ public class CropService {
 			@QueryParam("water_usage") Integer waterUsage, @QueryParam("crop_ids") List<Long> cropIds) {
 
 		FarmVillage village = dao.getFarmVillageById(farmId);
-		// Integer numberOfFarm = village.getFarms().size();
-		Integer numberOfFarm = 5;
+		Integer numberOfFarm = village.getFarms().size();
+		//Integer numberOfFarm = 5;
 		List<Crop> crops = null;
 		if (cropIds != null && !cropIds.isEmpty()) {
 			crops = cropDao.getCropsByIds(cropIds);
@@ -52,7 +52,7 @@ public class CropService {
 		if (crops == null) {
 			return new ArrayList<List<Crop>>();
 		}
-
+		
 		return FarmAllocationUtil.getFieldAllocation(crops.toArray((new Crop[crops.size()])), waterUsage, numberOfFarm);
 
 	}
@@ -85,5 +85,6 @@ public class CropService {
 		}
 
 	}
+	
 
 }

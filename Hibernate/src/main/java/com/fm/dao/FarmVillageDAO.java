@@ -11,12 +11,14 @@ import org.hibernate.Session;
 import com.fm.bean.FPCL;
 import com.fm.bean.Farm;
 import com.fm.bean.FarmVillage;
+import com.fm.bean.FarmVillagePlan;
 import com.fm.bean.Farmer;
 import com.fm.util.HibernateHelper;
 import com.fm.util.HibernateUtil;
 
 public class FarmVillageDAO {
 	String FPCL_QUERY = "from FarmVillage fv where fv.fpcl.id = ?";
+	String FARM_VILLAGE_PLAN = "from FarmVillagePlan fvp where fvp.farmVillage.id = ?";
 
 	public List<FarmVillage> getFarmVillageForFpcl(Long fpclid) {
 		List<FarmVillage> data = null;
@@ -52,6 +54,23 @@ public class FarmVillageDAO {
 				data.add(farm);
 			}
 
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return data;
+	}
+	
+	public FarmVillagePlan getFarmVillagePlanByFarmVillageId(Long id) {
+
+		FarmVillagePlan data = null;
+
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+			Query query = session.createQuery(FARM_VILLAGE_PLAN);
+			query.setParameter(0, id);
+			data = (FarmVillagePlan) query.uniqueResult();
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		} finally {
