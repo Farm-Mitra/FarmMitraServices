@@ -32,6 +32,19 @@ public class FarmVillage {
 	@Column(name = "date")
 	private Date date;
 	
+	@Column(name = "device_ip")
+	private Date deviceIp;
+	
+	private Device device;
+	
+	public Date getDeviceIp() {
+		return deviceIp;
+	}
+
+	public void setDeviceIp(Date deviceIp) {
+		this.deviceIp = deviceIp;
+	}
+
 	@ManyToOne
     @JoinColumn(name="fpcl_id")
 	private FPCL fpcl;
