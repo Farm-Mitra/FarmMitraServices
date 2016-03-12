@@ -11,6 +11,7 @@ public class FarmVillage {
 	private Date date;
 	private int noOfFarms;
 	private boolean isPlanned;
+	private FarmVillagePlan fVillagePlan;
 
 	public FarmVillage() {
 		super();
@@ -84,6 +85,14 @@ public class FarmVillage {
 
 	public void setPlanned(boolean isPlanned) {
 		this.isPlanned = isPlanned;
+	}
+
+	public FarmVillagePlan getfVillagePlan() {
+		return fVillagePlan;
+	}
+
+	public void setfVillagePlan(FarmVillagePlan fVillagePlan) {
+		this.fVillagePlan = fVillagePlan;
 	}
 
 	@Override

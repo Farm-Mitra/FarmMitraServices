@@ -2,12 +2,14 @@ package com.fm.util;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
 
 import com.fm.bean.FarmVillagePlan;
 import com.fm.bean.FarmVillagePlanDetail;
+import com.fm.service.bean.Crop;
 import com.fm.service.bean.Device;
 import com.fm.service.bean.Farm;
 import com.fm.service.bean.FarmVillage;
@@ -21,6 +23,32 @@ public class ServiceUtil {
 			fn.setNoOfFarms(f.getFarms() == null ? 0 : f.getFarms().size());
 			fn.setPlanned(f.getFarmVillagePlan() == null ? false : true);
 			BeanUtils.copyProperties(fn, f);
+			if (f.getFarmVillagePlan() != null) {
+				com.fm.service.bean.FarmVillagePlan fp = new com.fm.service.bean.FarmVillagePlan();
+
+				fp.setEndDate(f.getFarmVillagePlan().getEndDate());
+				fp.setStartDate(f.getFarmVillagePlan().getStartDate());
+				fp.setId(f.getFarmVillagePlan().getId());
+				fp.setWaterAvailable(f.getFarmVillagePlan().getWaterAvailable());
+				fp.setTime(f.getFarmVillagePlan().getTime());
+
+				HashSet<com.fm.service.bean.FarmVillagePlanDetail> set = new HashSet<com.fm.service.bean.FarmVillagePlanDetail>();
+				for (FarmVillagePlanDetail farmVillagePlan : f.getFarmVillagePlan().getFarmVillagePlanDetail()) {
+					com.fm.service.bean.FarmVillagePlanDetail fpd = new com.fm.service.bean.FarmVillagePlanDetail();
+					Crop crop = new Crop();
+					BeanUtils.copyProperties(crop, farmVillagePlan.getCrop());
+					Farm farm = new Farm();
+					BeanUtils.copyProperties(farm, farmVillagePlan.getFarm());
+					fpd.setCrop(crop);
+					fpd.setFarm(farm);
+					fpd.setId(farmVillagePlan.getId());
+					set.add(fpd);
+				}
+
+				fp.setFarmVillagePlanDetail(set);
+
+				fn.setfVillagePlan(fp);
+			}
 		} catch (IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -84,6 +112,33 @@ public class ServiceUtil {
 			fn.setPlanned(f.getFarmVillagePlan() == null ? false : true);
 			try {
 				BeanUtils.copyProperties(fn, f);
+				if (f.getFarmVillagePlan() != null) {
+					com.fm.service.bean.FarmVillagePlan fp = new com.fm.service.bean.FarmVillagePlan();
+
+					fp.setEndDate(f.getFarmVillagePlan().getEndDate());
+					fp.setStartDate(f.getFarmVillagePlan().getStartDate());
+					fp.setId(f.getFarmVillagePlan().getId());
+					fp.setWaterAvailable(f.getFarmVillagePlan().getWaterAvailable());
+					fp.setTime(f.getFarmVillagePlan().getTime());
+
+					HashSet<com.fm.service.bean.FarmVillagePlanDetail> set = new HashSet<com.fm.service.bean.FarmVillagePlanDetail>();
+					for (FarmVillagePlanDetail farmVillagePlan : f.getFarmVillagePlan().getFarmVillagePlanDetail()) {
+						com.fm.service.bean.FarmVillagePlanDetail fpd = new com.fm.service.bean.FarmVillagePlanDetail();
+						Crop crop = new Crop();
+						BeanUtils.copyProperties(crop, farmVillagePlan.getCrop());
+						Farm farm = new Farm();
+						BeanUtils.copyProperties(farm, farmVillagePlan.getFarm());
+						fpd.setCrop(crop);
+						fpd.setFarm(farm);
+						fpd.setId(farmVillagePlan.getId());
+						set.add(fpd);
+					}
+
+					fp.setFarmVillagePlanDetail(set);
+
+					fn.setfVillagePlan(fp);
+				}
+
 			} catch (IllegalAccessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

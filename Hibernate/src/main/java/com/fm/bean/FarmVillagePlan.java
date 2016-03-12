@@ -21,25 +21,25 @@ public class FarmVillagePlan {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "farm_village_plan_id")
-	private Long id;	
-	
-	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="farm_village_id")
-	private FarmVillage farmVillage;	
-		
+	private Long id;
+
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "farm_village_id")
+	private FarmVillage farmVillage;
+
 	@Column(name = "start_date")
 	private Date startDate;
-	
+
 	@Column(name = "end_date")
 	private Date endDate;
-	
+
 	@Column(name = "time")
 	private Date time;
-	
+
 	@Column(name = "water_available")
 	private Long waterAvailable;
-	
-	@OneToMany(mappedBy = "farmVillagePlan")
+
+	@OneToMany(mappedBy = "farmVillagePlan", fetch = FetchType.EAGER)
 	private Set<FarmVillagePlanDetail> farmVillagePlanDetail;
 
 	public FarmVillagePlan() {
@@ -103,6 +103,14 @@ public class FarmVillagePlan {
 
 	public void setWaterAvailable(Long waterAvailable) {
 		this.waterAvailable = waterAvailable;
+	}
+
+	public Set<FarmVillagePlanDetail> getFarmVillagePlanDetail() {
+		return farmVillagePlanDetail;
+	}
+
+	public void setFarmVillagePlanDetail(Set<FarmVillagePlanDetail> farmVillagePlanDetail) {
+		this.farmVillagePlanDetail = farmVillagePlanDetail;
 	}
 
 }
