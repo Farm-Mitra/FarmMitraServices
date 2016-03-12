@@ -21,6 +21,11 @@
 
 		<mapping class="com.fm.bean.FPCL" />
 		<mapping class="com.fm.bean.FarmVillage" />
+		<mapping class="com.fm.bean.Crop" />
+		<mapping class="com.fm.bean.Device" />
+		<mapping class="com.fm.bean.Farm" />
+		<mapping class="com.fm.bean.Farmer" />
+		<mapping class="com.fm.bean.FarmVillagePlan" />
 
 	</session-factory>
 </hibernate-configuration>

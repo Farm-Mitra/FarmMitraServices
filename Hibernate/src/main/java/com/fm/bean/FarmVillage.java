@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -33,15 +34,17 @@ public class FarmVillage {
 	private Date date;
 	
 	@Column(name = "device_ip")
-	private Date deviceIp;
+	private String deviceIp;
 	
+	@OneToOne
+    @JoinColumn(name="device_id")
 	private Device device;
-	
-	public Date getDeviceIp() {
-		return deviceIp;
+
+	public void setDevice(Device device) {
+		this.device = device;
 	}
 
-	public void setDeviceIp(Date deviceIp) {
+	public void setDeviceIp(String deviceIp) {
 		this.deviceIp = deviceIp;
 	}
 
