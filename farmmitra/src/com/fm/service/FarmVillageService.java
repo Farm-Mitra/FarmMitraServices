@@ -1,5 +1,7 @@
 package com.fm.service;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -10,7 +12,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.commons.beanutils.BeanUtils;
+
 import com.fm.dao.FarmVillageDAO;
+import com.fm.service.bean.Farm;
 import com.fm.service.bean.FarmVillage;
 import com.fm.util.HibernateHelper;
 import com.fm.util.ServiceUtil;
@@ -31,7 +36,8 @@ public class FarmVillageService {
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
 	public FarmVillage getFarmVillage(@PathParam("id") String id) {
-		FarmVillage fv = ServiceUtil.convertPOJO((com.fm.bean.FarmVillage) helper.get(com.fm.bean.FarmVillage.class, Long.parseLong(id)));
+		FarmVillage fv = ServiceUtil
+				.convertPOJO((com.fm.bean.FarmVillage) helper.get(com.fm.bean.FarmVillage.class, Long.parseLong(id)));
 		return fv;
 	}
 
@@ -49,8 +55,37 @@ public class FarmVillageService {
 	@Produces({ MediaType.APPLICATION_JSON })
 	public FarmVillage postFarmVillage(FarmVillage data) {
 		System.out.println(data.getName());
-		//TODO:
-		
+		// TODO:
+
 		return data;
+	}
+
+	@Path("{farm_id}/farm")
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON })
+	public List<Farm> getFarmsByFarmVillage(@PathParam("farm_id") Long farmId) {
+		ArrayList<com.fm.bean.Farm> farmList = new ArrayList<com.fm.bean.Farm>();
+		farmList.addAll(dao.getFarmsByFarmVillageId(farmId));
+		List<Farm> farms = convertPOJOListForFarm(farmList);
+		return farms;
+	}
+
+	public static List convertPOJOListForFarm(List fs) {
+		List<Farm> fnew = new ArrayList();
+
+		for (Object f : fs) {
+			Farm fn = new Farm();
+			try {
+				BeanUtils.copyProperties(fn, f);
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			fnew.add(fn);
+		}
+		return fnew;
 	}
 }
