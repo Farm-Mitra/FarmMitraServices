@@ -1,40 +1,14 @@
-package com.fm.bean;
+package com.fm.service.bean;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "farm_village")
 public class FarmVillage {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "farm_village_id")
 	private Long id;
-
-	@Column(name = "name")
 	private String name;
-
-	@Column(name = "location")
 	private String location;
-
-	@Column(name = "water_capacity")
 	private Integer waterCapacity;
-
-	@Column(name = "date")
 	private Date date;
-	
-	@ManyToOne
-    @JoinColumn(name="fpcl_id")
-	private FPCL fpcl;
 
 	public FarmVillage() {
 		super();
@@ -92,14 +66,6 @@ public class FarmVillage {
 
 	public void setDate(Date date) {
 		this.date = new Date();
-	}
-
-	public FPCL getFpcl() {
-		return fpcl;
-	}
-
-	public void setFpcl(FPCL fpcl) {
-		this.fpcl = fpcl;
 	}
 
 }
