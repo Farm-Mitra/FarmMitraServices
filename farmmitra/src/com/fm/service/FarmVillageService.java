@@ -28,7 +28,7 @@ public class FarmVillageService {
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
 	public List<FarmVillage> getFarmVillage() {
-		List<FarmVillage> list = ServiceUtil.convertPOJOList(helper.list("FarmVillage"));
+		List<FarmVillage> list = ServiceUtil.convertPOJOListFV(helper.list("FarmVillage"));
 		return list;
 	}
 
@@ -36,8 +36,7 @@ public class FarmVillageService {
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
 	public FarmVillage getFarmVillage(@PathParam("id") String id) {
-		FarmVillage fv = ServiceUtil
-				.convertPOJO((com.fm.bean.FarmVillage) helper.get(com.fm.bean.FarmVillage.class, Long.parseLong(id)));
+		FarmVillage fv = ServiceUtil.convertPOJO((com.fm.bean.FarmVillage) helper.get(com.fm.bean.FarmVillage.class, Long.parseLong(id)));
 		return fv;
 	}
 
@@ -46,8 +45,18 @@ public class FarmVillageService {
 	@Produces({ MediaType.APPLICATION_JSON })
 	public List<FarmVillage> getFarmVillageForFpcl(@PathParam("fpclid") String fpclid) {
 		List<com.fm.bean.FarmVillage> fvs = dao.getFarmVillageForFpcl(Long.parseLong(fpclid));
-		List<FarmVillage> farmVillages = ServiceUtil.convertPOJOList(fvs);
+		List<FarmVillage> farmVillages = ServiceUtil.convertPOJOListFV(fvs);
 		return farmVillages;
+	}
+
+	@Path("{farmVillageId}/farm")
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON })
+	public List<Farm> getFarmsByFarmVillage(@PathParam("farmVillageId") Long farmVillageId) {
+		ArrayList<com.fm.bean.Farm> farmList = new ArrayList<com.fm.bean.Farm>();
+		farmList.addAll(dao.getFarmsByFarmVillageId(farmVillageId));
+		List<Farm> farms = ServiceUtil.convertPOJOListFm(farmList);
+		return farms;
 	}
 
 	@POST
@@ -58,34 +67,5 @@ public class FarmVillageService {
 		// TODO:
 
 		return data;
-	}
-
-	@Path("{farm_id}/farm")
-	@GET
-	@Produces({ MediaType.APPLICATION_JSON })
-	public List<Farm> getFarmsByFarmVillage(@PathParam("farm_id") Long farmId) {
-		ArrayList<com.fm.bean.Farm> farmList = new ArrayList<com.fm.bean.Farm>();
-		farmList.addAll(dao.getFarmsByFarmVillageId(farmId));
-		List<Farm> farms = convertPOJOListForFarm(farmList);
-		return farms;
-	}
-
-	public static List convertPOJOListForFarm(List fs) {
-		List<Farm> fnew = new ArrayList();
-
-		for (Object f : fs) {
-			Farm fn = new Farm();
-			try {
-				BeanUtils.copyProperties(fn, f);
-			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InvocationTargetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			fnew.add(fn);
-		}
-		return fnew;
 	}
 }
