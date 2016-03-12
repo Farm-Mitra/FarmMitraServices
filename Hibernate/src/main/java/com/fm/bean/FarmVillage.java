@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,11 +43,11 @@ public class FarmVillage {
 	@JoinColumn(name = "device_id")
 	private Device device;
 
-	@OneToMany(mappedBy = "farmVillage")
+	@OneToMany(mappedBy = "farmVillage", fetch = FetchType.EAGER)
 	private Set<Farm> farms;
 
 	@ManyToOne
-    @JoinColumn(name="fpcl_id")
+	@JoinColumn(name = "fpcl_id")
 	private FPCL fpcl;
 
 	public FarmVillage() {

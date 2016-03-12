@@ -37,6 +37,7 @@ public class FPCLService {
 
 		for (com.fm.bean.FarmVillage f : fvs) {
 			FarmVillage fn = new FarmVillage();
+			fn.setNoOfFarms(f.getFarms().size());
 			try {
 				BeanUtils.copyProperties(fn, f);
 			} catch (IllegalAccessException e) {

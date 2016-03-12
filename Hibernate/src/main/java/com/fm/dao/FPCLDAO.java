@@ -1,13 +1,11 @@
 package com.fm.dao;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.fm.bean.Device;
@@ -24,13 +22,17 @@ public class FPCLDAO {
 	String FPCL_FARMER_QUERY = "from Farmer fv where fv.fpcl.id = ?";
 
 	public List<FarmVillage> getFarmVillageForFpcl(Long fpclid) {
-		List<FarmVillage> data = null;
+		List<FarmVillage> data = new ArrayList<FarmVillage>();
 
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		try {
-			Query query = session.createQuery(FPCL_FARMVILLAGE_QUERY);
-			query.setParameter(0, fpclid);
-			data = query.list();
+			FPCL f = (FPCL) session.get(FPCL.class, fpclid);
+			for (FarmVillage farmVillage : f.getFarmVillages()) {
+				farmVillage.getFarms();
+				//farmVillage.setFarmSize(.size());
+				data.add(farmVillage);
+			}
+			
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		} finally {

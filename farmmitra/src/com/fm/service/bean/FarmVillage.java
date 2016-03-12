@@ -9,6 +9,7 @@ public class FarmVillage {
 	private String location;
 	private Integer waterCapacity;
 	private Date date;
+	private int noOfFarms;
 
 	public FarmVillage() {
 		super();
@@ -66,6 +67,14 @@ public class FarmVillage {
 
 	public void setDate(Date date) {
 		this.date = new Date();
+	}
+
+	public int getNoOfFarms() {
+		return noOfFarms;
+	}
+
+	public void setNoOfFarms(int noOfFarms) {
+		this.noOfFarms = noOfFarms;
 	}
 
 	@Override
