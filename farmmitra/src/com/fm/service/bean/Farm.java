@@ -101,4 +101,10 @@ public class Farm {
 		this.farmVillageName = farmVillageName;
 	}
 
+	@Override
+	public String toString() {
+		return "Farm [id=" + id + ", fc=" + fc + ", longitude=" + longitude + ", lattitude=" + lattitude + ", area="
+				+ area + ", date=" + date + ", farmerName=" + farmerName + ", farmVillageName=" + farmVillageName + "]";
+	}
+
 }

@@ -53,6 +53,9 @@ public class FarmVillageService {
 		ArrayList<com.fm.bean.Farm> farmList = new ArrayList<com.fm.bean.Farm>();
 		farmList.addAll(dao.getFarmsByFarmVillageId(farmVillageId));
 		List<Farm> farms = ServiceUtil.convertPOJOListFm(farmList);
+		for (Farm farm : farms) {
+			System.out.println(farm.toString());
+		}
 		return farms;
 	}
 
