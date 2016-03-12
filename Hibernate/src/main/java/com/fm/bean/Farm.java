@@ -106,7 +106,7 @@ public class Farm {
 		return farmArea;
 	}
 
-	public void setArea(String farmArea) {
+	public void setFarmArea(String farmArea) {
 		this.farmArea = farmArea;
 	}
 
