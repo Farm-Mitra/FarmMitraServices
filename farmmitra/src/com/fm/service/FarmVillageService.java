@@ -27,7 +27,7 @@ public class FarmVillageService {
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
 	public List<FarmVillage> getFarmVillage() {
-		List<FarmVillage> list = helper.list("FarmVillage");
+		List<FarmVillage> list = convertPOJOList(helper.list("FarmVillage"));
 		return list;
 	}
 
@@ -35,20 +35,27 @@ public class FarmVillageService {
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
 	public FarmVillage getFarmVillage(@PathParam("id") String id) {
-		FarmVillage fv = (FarmVillage) helper.get(FarmVillage.class, Long.parseLong(id));
+		FarmVillage fv = convertPOJO((com.fm.bean.FarmVillage) helper.get(com.fm.bean.FarmVillage.class, Long.parseLong(id)));
 		return fv;
 	}
 
+	@Path("fpcl/{fpclid}")
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
-	public List<FarmVillage> getFarmVillageForFpcl(@QueryParam("fpclid") String fpclid) {
+	public List<FarmVillage> getFarmVillageForFpcl(@PathParam("fpclid") String fpclid) {
 		List<com.fm.bean.FarmVillage> fvs = dao.getFarmVillageForFpcl(Long.parseLong(fpclid));
+		List<FarmVillage> farmVillages = convertPOJOList(fvs);
+		return farmVillages;
+	}
+
+	private List<FarmVillage> convertPOJOList(List<com.fm.bean.FarmVillage> fvs) {
 		List<FarmVillage> farmVillages = new ArrayList<FarmVillage>();
+
 		for (com.fm.bean.FarmVillage fv : fvs) {
+			System.out.println(fv.toString());
 			FarmVillage farmVillage = new FarmVillage();
-			System.out.println(fv.getFpcl().getId());
 			try {
-				BeanUtils.copyProperties(fv, farmVillage);
+				BeanUtils.copyProperties(farmVillage, fv);
 			} catch (IllegalAccessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -56,9 +63,28 @@ public class FarmVillageService {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+
+			System.out.println(farmVillage.toString());
 			farmVillages.add(farmVillage);
 		}
 		return farmVillages;
+	}
+
+	private FarmVillage convertPOJO(com.fm.bean.FarmVillage fv) {
+		System.out.println(fv.toString());
+		FarmVillage farmVillage = new FarmVillage();
+		try {
+			BeanUtils.copyProperties(farmVillage, fv);
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		System.out.println(farmVillage.toString());
+		return farmVillage;
 	}
 
 	@POST
@@ -68,5 +94,9 @@ public class FarmVillageService {
 		System.out.println(data.getName());
 
 		return data;
+	}
+
+	public static void main(String[] args) {
+		new FarmVillageService().getFarmVillageForFpcl("2");
 	}
 }

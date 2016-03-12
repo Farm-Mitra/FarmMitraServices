@@ -102,4 +102,10 @@ public class FarmVillage {
 		this.fpcl = fpcl;
 	}
 
+	@Override
+	public String toString() {
+		return "FarmVillage [id=" + id + ", name=" + name + ", location=" + location + ", waterCapacity="
+				+ waterCapacity + ", date=" + date + ", fpcl=" + fpcl + "]";
+	}
+
 }
