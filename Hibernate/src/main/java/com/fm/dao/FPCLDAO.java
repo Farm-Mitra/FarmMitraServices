@@ -10,6 +10,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import com.fm.bean.Device;
 import com.fm.bean.FPCL;
 import com.fm.bean.Farm;
 import com.fm.bean.FarmVillage;
@@ -58,16 +59,43 @@ public class FPCLDAO {
 		return new ArrayList<Farmer>(data);
 	}
 
-	public List<com.fm.bean.FarmVillage> getFarmForFpcl(long parseLong) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<com.fm.bean.Farm> getFarmForFpcl(long fpclid) {
+		Set<Farm> data = new HashSet<Farm>();
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+
+			FPCL f = (FPCL) session.get(FPCL.class, fpclid);
+			for (FarmVillage fv : f.getFarmVillages()) {
+				for (Farm farm : fv.getFarms()) {
+					data.add(farm);
+				}
+			}
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+		return new ArrayList<Farm>(data);
 	}
 
-	public static void main(String[] args) {
-		List<Farmer> l = new FPCLDAO().getFarmerForFpcl(1);
-		for (Farmer farmer : l) {
-			System.out.println(farmer.toString());
+
+	public List<com.fm.bean.Device> getDeviceForFpcl(long fpclid) {
+		Set<Device> data = new HashSet<Device>();
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+
+			FPCL f = (FPCL) session.get(FPCL.class, fpclid);
+			for (FarmVillage fv : f.getFarmVillages()) {
+				data.add(fv.getDevice());
+			}
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
 		}
+
+		return new ArrayList<Device>(data);
 	}
 
 }

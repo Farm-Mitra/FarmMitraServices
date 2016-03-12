@@ -1,25 +1,9 @@
-package com.fm.bean;
+package com.fm.service.bean;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "farm")
 public class Farm {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "farm_id")
 	private Long id;
 
 	public Long getId() {
@@ -30,37 +14,16 @@ public class Farm {
 		this.id = id;
 	}
 
-	@Column(name = "fc")
 	private Long fc;
 
-	@Column(name = "long")
 	private String longitude;
 
-	@Column(name = "lat")
 	private String lattitude;
 
-	@Column(name = "area")
 	private String area;
 
-	@Column(name = "date")
 	private Date date;
-	
-	@ManyToOne
-    @JoinColumn(name="farm_village_id")
-	private FarmVillage farmVillage;
-	
-	
-	@ManyToOne
-	@JoinColumn(name = "farmer_id")
-	private Farmer farmer;
 
-	public Farmer getFarmer() {
-		return farmer;
-	}
-
-	public void setFarmer(Farmer farmer) {
-		this.farmer = farmer;
-	}
 
 	public Farm() {
 
@@ -120,12 +83,7 @@ public class Farm {
 		this.date = date;
 	}
 
-	public FarmVillage getFarmVillage() {
-		return farmVillage;
-	}
-
-	public void setFarmVillage(FarmVillage farmVillage) {
-		this.farmVillage = farmVillage;
-	}
+	
+	
 
 }
