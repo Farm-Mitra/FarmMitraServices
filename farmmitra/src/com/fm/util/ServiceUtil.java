@@ -13,7 +13,7 @@ public class ServiceUtil {
 		List fnew = new ArrayList();
 
 		for (Object f : fs) {
-			FarmVillage fn = new FarmVillage();
+			Object fn = new Object();
 			try {
 				BeanUtils.copyProperties(fn, f);
 			} catch (IllegalAccessException e) {

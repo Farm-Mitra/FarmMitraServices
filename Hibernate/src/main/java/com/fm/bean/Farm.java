@@ -45,6 +45,10 @@ public class Farm {
 	@Column(name = "date")
 	private Date date;
 	
+	@ManyToOne
+    @JoinColumn(name="farm_village_id")
+	private FarmVillage farmVillage;
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "farmer_id")

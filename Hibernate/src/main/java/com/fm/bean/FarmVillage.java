@@ -42,11 +42,11 @@ public class FarmVillage {
 	@JoinColumn(name = "device_id")
 	private Device device;
 
-	@OneToMany(mappedBy = "id")
+	@OneToMany(mappedBy = "farmVillage")
 	private Set<Farm> farms;
 
 	@ManyToOne
-	@JoinColumn(name = "fpcl_id")
+    @JoinColumn(name="fpcl_id")
 	private FPCL fpcl;
 
 	public FarmVillage() {

@@ -1,7 +1,10 @@
 package com.fm.dao;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -36,14 +39,12 @@ public class FPCLDAO {
 	}
 
 	public List<Farmer> getFarmerForFpcl(long fpclid) {
-		List<Farmer> data = new ArrayList<Farmer>();
+		Set<Farmer> data = new HashSet<Farmer>();
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		try {
 
 			FPCL f = (FPCL) session.get(FPCL.class, fpclid);
-			System.out.println(f.getFarmVillages().size());
 			for (FarmVillage fv : f.getFarmVillages()) {
-				System.out.println(fv.getFarms().size());
 				for (Farm farm : fv.getFarms()) {
 					data.add(farm.getFarmer());
 				}
@@ -54,7 +55,7 @@ public class FPCLDAO {
 			session.close();
 		}
 
-		return data;
+		return new ArrayList<Farmer>(data);
 	}
 
 	public List<com.fm.bean.FarmVillage> getFarmForFpcl(long parseLong) {
@@ -63,9 +64,9 @@ public class FPCLDAO {
 	}
 
 	public static void main(String[] args) {
-		List<Farmer> l = new FPCLDAO().getFarmerForFpcl(2);
+		List<Farmer> l = new FPCLDAO().getFarmerForFpcl(1);
 		for (Farmer farmer : l) {
-			System.out.println(l.toString());
+			System.out.println(farmer.toString());
 		}
 	}
 
