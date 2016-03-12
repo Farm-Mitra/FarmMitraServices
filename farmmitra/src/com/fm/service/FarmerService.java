@@ -11,46 +11,44 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.fm.service.bean.Device;
+import com.fm.service.bean.Farmer;
 import com.fm.util.HibernateHelper;
 import com.fm.util.ServiceUtil;
 
-@Path("/device")
-public class DeviceService {
-
+@Path("/farmer")
+public class FarmerService {
 	HibernateHelper helper = new HibernateHelper();
 
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
-	public List<Device> getDevice() {
-		List<Device> list = ServiceUtil.convertPOJOListD(helper.list("Device"));
+	public List<Farmer> getFarmer() {
+		List<Farmer> list = ServiceUtil.convertPOJOListF(helper.list("Farmer"));
 		return list;
 	}
 
 	@Path("{id}")
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Device getDevice(@PathParam("id") String id) {
-		Device fv = ServiceUtil.convertPOJO((com.fm.bean.Device) helper.get(com.fm.bean.Device.class, Long.parseLong(id)));
+	public Farmer getFarmer(@PathParam("id") String id) {
+		Farmer fv = ServiceUtil.convertPOJO((com.fm.bean.Farmer) helper.get(com.fm.bean.Farmer.class, Long.parseLong(id)));
 		return fv;
 	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces({ MediaType.APPLICATION_JSON })
-	public void postDevice(Device data) {
+	public void postFarmer(Farmer data) {
 		System.out.println(data);
-		helper.create(ServiceUtil.convertPOJODInverse(data));
+		helper.create(ServiceUtil.convertPOJOFInverse(data));
 	}
-
+	
 	@Path("{id}")
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces({ MediaType.APPLICATION_JSON })
-	public void putDevice(@PathParam("id") String id, Device data) {
+	public void putFarmer(@PathParam("id") String id, Farmer data) {
 		System.out.println(data);
 		data.setId(Long.parseLong(id));
-		helper.update(ServiceUtil.convertPOJODInverse(data));
+		helper.update(ServiceUtil.convertPOJOFInverse(data));
 	}
-
 }

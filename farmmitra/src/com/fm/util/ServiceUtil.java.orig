@@ -46,6 +46,8 @@ public class ServiceUtil {
 		return fn;
 	}
 
+<<<<<<< Updated upstream
+=======
 	public static Device convertPOJO(com.fm.bean.Device d) {
 		Device fn = new Device();
 		try {
@@ -59,22 +61,8 @@ public class ServiceUtil {
 		}
 		return fn;
 	}
-	
 
-	public static Farmer convertPOJO(com.fm.bean.Farmer f) {
-		Farmer fn = new Farmer();
-		try {
-			BeanUtils.copyProperties(fn, f);
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return fn;
-	}
-
+>>>>>>> Stashed changes
 	public static List<FarmVillage> convertPOJOListFV(List<com.fm.bean.FarmVillage> fvs) {
 		List<FarmVillage> fnew = new ArrayList<FarmVillage>();
 
@@ -154,8 +142,15 @@ public class ServiceUtil {
 		return fnew;
 	}
 
+<<<<<<< Updated upstream
+	/* Map Pojo to Hibernate Methods start here */
+
+	public static FarmVillagePlan convertPOJOInverseFvp(Object f) {
+		FarmVillagePlan fn = new FarmVillagePlan();
+=======
 	public static com.fm.bean.Farm convertPOJOFmInverse(Farm f) {
 		com.fm.bean.Farm fn = new com.fm.bean.Farm();
+>>>>>>> Stashed changes
 		try {
 			BeanUtils.copyProperties(fn, f);
 		} catch (IllegalAccessException e) {
@@ -168,6 +163,12 @@ public class ServiceUtil {
 		return fn;
 	}
 
+<<<<<<< Updated upstream
+	public static FarmVillagePlanDetail convertPOJOInverseFvpd(Object f) {
+		FarmVillagePlanDetail fn = new FarmVillagePlanDetail();
+		try {
+			BeanUtils.copyProperties(fn, f);
+=======
 	public static Object convertPOJOFvInverse(FarmVillage fv) {
 		com.fm.bean.FarmVillage fn = new com.fm.bean.FarmVillage();
 		try {
@@ -186,6 +187,7 @@ public class ServiceUtil {
 		com.fm.bean.Device fn = new com.fm.bean.Device();
 		try {
 			BeanUtils.copyProperties(fn, fv);
+>>>>>>> Stashed changes
 		} catch (IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -195,51 +197,5 @@ public class ServiceUtil {
 		}
 		return fn;
 	}
-
-
-	/* Map Pojo to Hibernate Methods start here */
-
-	public static FarmVillagePlan convertPOJOInverseFvp(Object f) {
-		FarmVillagePlan fn = new FarmVillagePlan();
-		try {
-			BeanUtils.copyProperties(fn, f);
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return fn;
-	}
-
-	public static FarmVillagePlanDetail convertPOJOInverseFvpd(Object f) {
-		FarmVillagePlanDetail fn = new FarmVillagePlanDetail();
-		try {
-			BeanUtils.copyProperties(fn, f);
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return fn;
-	}
-
-	public static Object convertPOJOFInverse(Farmer f) {
-		Farmer fn = new Farmer();
-		try {
-			BeanUtils.copyProperties(fn, f);
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return fn;
-	}
-
 
 }
