@@ -89,4 +89,10 @@ public class Farmer {
 		this.date = date;
 	}
 
+	@Override
+	public String toString() {
+		return "Farmer [id=" + id + ", farmerName=" + farmerName + ", farmerAddress=" + farmerAddress + ", contactNno="
+				+ contactNno + ", date=" + date + "]";
+	}
+
 }

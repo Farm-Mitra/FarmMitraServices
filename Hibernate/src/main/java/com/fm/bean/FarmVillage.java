@@ -1,6 +1,7 @@
 package com.fm.bean;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,13 +10,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "farm_village")
 public class FarmVillage {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "farm_village_id")
@@ -32,24 +34,19 @@ public class FarmVillage {
 
 	@Column(name = "date")
 	private Date date;
-	
+
 	@Column(name = "device_ip")
 	private String deviceIp;
-	
+
 	@OneToOne
-    @JoinColumn(name="device_id")
+	@JoinColumn(name = "device_id")
 	private Device device;
 
-	public void setDevice(Device device) {
-		this.device = device;
-	}
-
-	public void setDeviceIp(String deviceIp) {
-		this.deviceIp = deviceIp;
-	}
+	@OneToMany(mappedBy = "id")
+	private Set<Farm> farms;
 
 	@ManyToOne
-    @JoinColumn(name="fpcl_id")
+	@JoinColumn(name = "fpcl_id")
 	private FPCL fpcl;
 
 	public FarmVillage() {
@@ -60,7 +57,7 @@ public class FarmVillage {
 		super();
 		this.id = id;
 	}
-	
+
 	public FarmVillage(Long id, String name, String location, Integer waterCapacity, Date date) {
 		super();
 		this.id = id;
@@ -68,6 +65,14 @@ public class FarmVillage {
 		this.location = location;
 		this.waterCapacity = waterCapacity;
 		this.date = date;
+	}
+
+	public void setDevice(Device device) {
+		this.device = device;
+	}
+
+	public void setDeviceIp(String deviceIp) {
+		this.deviceIp = deviceIp;
 	}
 
 	public Long getId() {
@@ -116,6 +121,22 @@ public class FarmVillage {
 
 	public void setFpcl(FPCL fpcl) {
 		this.fpcl = fpcl;
+	}
+
+	public Set<Farm> getFarms() {
+		return farms;
+	}
+
+	public void setFarms(Set<Farm> farms) {
+		this.farms = farms;
+	}
+
+	public String getDeviceIp() {
+		return deviceIp;
+	}
+
+	public Device getDevice() {
+		return device;
 	}
 
 	@Override

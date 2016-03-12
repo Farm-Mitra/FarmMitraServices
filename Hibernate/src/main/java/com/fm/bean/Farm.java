@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -44,8 +45,9 @@ public class Farm {
 	@Column(name = "date")
 	private Date date;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "farmer_id", nullable = false)
+	
+	@ManyToOne
+	@JoinColumn(name = "farmer_id")
 	private Farmer farmer;
 
 	public Farmer getFarmer() {
