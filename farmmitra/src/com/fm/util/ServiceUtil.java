@@ -18,7 +18,8 @@ public class ServiceUtil {
 	public static FarmVillage convertPOJO(com.fm.bean.FarmVillage f) {
 		FarmVillage fn = new FarmVillage();
 		try {
-			fn.setNoOfFarms(f.getFarms().size());
+			fn.setNoOfFarms(f.getFarms() == null ? 0 : f.getFarms().size());
+			fn.setPlanned(f.getFarmVillagePlan() == null ? false : true);
 			BeanUtils.copyProperties(fn, f);
 		} catch (IllegalAccessException e) {
 			// TODO Auto-generated catch block
@@ -59,7 +60,6 @@ public class ServiceUtil {
 		}
 		return fn;
 	}
-	
 
 	public static Farmer convertPOJO(com.fm.bean.Farmer f) {
 		Farmer fn = new Farmer();
@@ -80,7 +80,8 @@ public class ServiceUtil {
 
 		for (com.fm.bean.FarmVillage f : fvs) {
 			FarmVillage fn = new FarmVillage();
-			fn.setNoOfFarms(f.getFarms().size());
+			fn.setNoOfFarms(f.getFarms() == null ? 0 : f.getFarms().size());
+			fn.setPlanned(f.getFarmVillagePlan() == null ? false : true);
 			try {
 				BeanUtils.copyProperties(fn, f);
 			} catch (IllegalAccessException e) {
@@ -196,7 +197,6 @@ public class ServiceUtil {
 		return fn;
 	}
 
-
 	/* Map Pojo to Hibernate Methods start here */
 
 	public static FarmVillagePlan convertPOJOInverseFvp(Object f) {
@@ -240,6 +240,5 @@ public class ServiceUtil {
 		}
 		return fn;
 	}
-
 
 }

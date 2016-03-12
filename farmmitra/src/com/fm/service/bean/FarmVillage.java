@@ -10,6 +10,7 @@ public class FarmVillage {
 	private Integer waterCapacity;
 	private Date date;
 	private int noOfFarms;
+	private boolean isPlanned;
 
 	public FarmVillage() {
 		super();
@@ -75,6 +76,14 @@ public class FarmVillage {
 
 	public void setNoOfFarms(int noOfFarms) {
 		this.noOfFarms = noOfFarms;
+	}
+
+	public boolean isPlanned() {
+		return isPlanned;
+	}
+
+	public void setPlanned(boolean isPlanned) {
+		this.isPlanned = isPlanned;
 	}
 
 	@Override
