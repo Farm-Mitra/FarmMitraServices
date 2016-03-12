@@ -1,7 +1,5 @@
 package com.fm.service;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -12,60 +10,35 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.apache.commons.beanutils.BeanUtils;
-
 import com.fm.dao.FarmVillageDAO;
 import com.fm.service.bean.Farm;
-import com.fm.service.bean.FarmVillage;
 import com.fm.util.HibernateHelper;
 import com.fm.util.ServiceUtil;
 
 @Path("/farm")
 public class FarmService {
 	HibernateHelper helper = new HibernateHelper();
-	FarmVillageDAO dao = new FarmVillageDAO();
 
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
-	public List<FarmVillage> getFarmVillage() {
-		List<FarmVillage> list = ServiceUtil.convertPOJOListFV(helper.list("FarmVillage"));
+	public List<Farm> getFarmVillage() {
+		List<Farm> list = ServiceUtil.convertPOJOListFm(helper.list("Farm"));
 		return list;
 	}
 
 	@Path("{id}")
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
-	public FarmVillage getFarmVillage(@PathParam("id") String id) {
-		FarmVillage fv = ServiceUtil.convertPOJO((com.fm.bean.FarmVillage) helper.get(com.fm.bean.FarmVillage.class, Long.parseLong(id)));
+	public Farm getFarmVillage(@PathParam("id") String id) {
+		Farm fv = ServiceUtil.convertPOJO((com.fm.bean.Farm) helper.get(com.fm.bean.Farm.class, Long.parseLong(id)));
 		return fv;
-	}
-
-	@Path("fpcl/{fpclid}")
-	@GET
-	@Produces({ MediaType.APPLICATION_JSON })
-	public List<FarmVillage> getFarmVillageForFpcl(@PathParam("fpclid") String fpclid) {
-		List<com.fm.bean.FarmVillage> fvs = dao.getFarmVillageForFpcl(Long.parseLong(fpclid));
-		List<FarmVillage> farmVillages = ServiceUtil.convertPOJOListFV(fvs);
-		return farmVillages;
-	}
-
-	@Path("{farmVillageId}/farm")
-	@GET
-	@Produces({ MediaType.APPLICATION_JSON })
-	public List<Farm> getFarmsByFarmVillage(@PathParam("farmVillageId") Long farmVillageId) {
-		ArrayList<com.fm.bean.Farm> farmList = new ArrayList<com.fm.bean.Farm>();
-		farmList.addAll(dao.getFarmsByFarmVillageId(farmVillageId));
-		List<Farm> farms = ServiceUtil.convertPOJOListFm(farmList);
-		return farms;
 	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces({ MediaType.APPLICATION_JSON })
-	public FarmVillage postFarmVillage(FarmVillage data) {
-		System.out.println(data.getName());
-		// TODO:
-
-		return data;
+	public void postFarmVillage(Farm data) {
+		System.out.println(data);
+		helper.create(data);
 	}
 }

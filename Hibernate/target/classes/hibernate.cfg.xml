@@ -26,6 +26,8 @@
 		<mapping class="com.fm.bean.Farm" />
 		<mapping class="com.fm.bean.Farmer" />
 		<mapping class="com.fm.bean.FarmVillagePlan" />
+		<mapping class="com.fm.bean.FarmVillagePlanDetail" />
+		
 
 	</session-factory>
 </hibernate-configuration>

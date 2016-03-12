@@ -1,6 +1,5 @@
 package com.fm.service;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +10,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
-import org.apache.commons.beanutils.BeanUtils;
 
 import com.fm.dao.FarmVillageDAO;
 import com.fm.service.bean.Farm;
@@ -64,8 +61,7 @@ public class FarmVillageService {
 	@Produces({ MediaType.APPLICATION_JSON })
 	public FarmVillage postFarmVillage(FarmVillage data) {
 		System.out.println(data.getName());
-		// TODO:
-
+		helper.create(data);
 		return data;
 	}
 }

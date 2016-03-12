@@ -13,7 +13,7 @@ import com.fm.service.bean.Farmer;
 
 public class ServiceUtil {
 
-	public static FarmVillage convertPOJO(Object f) {
+	public static FarmVillage convertPOJO(com.fm.bean.FarmVillage f) {
 		FarmVillage fn = new FarmVillage();
 		try {
 			BeanUtils.copyProperties(fn, f);
@@ -26,7 +26,19 @@ public class ServiceUtil {
 		}
 		return fn;
 	}
-
+	public static Farm convertPOJO(com.fm.bean.Farm f) {
+		Farm fn = new Farm();
+		try {
+			BeanUtils.copyProperties(fn, f);
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return fn;
+	}
 	
 	
 	
