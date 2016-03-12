@@ -23,7 +23,9 @@ public class Farm {
 	private String area;
 
 	private Date date;
-
+	
+	private String farmerName;
+	private String farmVillageName;
 
 	public Farm() {
 
@@ -83,7 +85,20 @@ public class Farm {
 		this.date = date;
 	}
 
-	
-	
+	public String getFarmerName() {
+		return farmerName;
+	}
+
+	public void setFarmerName(String farmerName) {
+		this.farmerName = farmerName;
+	}
+
+	public String getFarmVillageName() {
+		return farmVillageName;
+	}
+
+	public void setFarmVillageName(String farmVillageName) {
+		this.farmVillageName = farmVillageName;
+	}
 
 }

@@ -98,6 +98,8 @@ public class FPCLService {
 
 		for (com.fm.bean.Farm f : fs) {
 			Farm fn = new Farm();
+			fn.setFarmerName(f.getFarmer().getFarmerName());
+			fn.setFarmVillageName(f.getFarmVillage().getName());
 			try {
 				BeanUtils.copyProperties(fn, f);
 			} catch (IllegalAccessException e) {
