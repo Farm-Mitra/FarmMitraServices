@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -18,9 +19,9 @@ public class FarmVillagePlanDetail {
 	@Column(name = "id")
 	private Long id;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "farm_village_plan_id")
-	private FarmVillage farmVillagePlanId;
+	private FarmVillagePlan farmVillagePlan;
 
 	@OneToOne
 	@JoinColumn(name = "farm_id")
@@ -33,11 +34,11 @@ public class FarmVillagePlanDetail {
 	public FarmVillagePlanDetail() {
 		super();
 	}
-
-	public FarmVillagePlanDetail(Long id, FarmVillage farmVillagePlanId, Farm farm, Crop crop) {
+	
+	public FarmVillagePlanDetail(Long id, FarmVillagePlan farmVillagePlan, Farm farm, Crop crop) {
 		super();
 		this.id = id;
-		this.farmVillagePlanId = farmVillagePlanId;
+		this.farmVillagePlan = farmVillagePlan;
 		this.farm = farm;
 		this.crop = crop;
 	}
@@ -50,12 +51,12 @@ public class FarmVillagePlanDetail {
 		this.id = id;
 	}
 
-	public FarmVillage getFarmVillagePlanId() {
-		return farmVillagePlanId;
+	public FarmVillagePlan getFarmVillagePlan() {
+		return farmVillagePlan;
 	}
 
-	public void setFarmVillagePlanId(FarmVillage farmVillagePlanId) {
-		this.farmVillagePlanId = farmVillagePlanId;
+	public void setFarmVillagePlanId(FarmVillagePlan farmVillagePlan) {
+		this.farmVillagePlan = farmVillagePlan;
 	}
 
 	public Farm getFarm() {

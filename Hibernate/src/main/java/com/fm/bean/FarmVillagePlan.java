@@ -1,13 +1,16 @@
 package com.fm.bean;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -35,6 +38,9 @@ public class FarmVillagePlan {
 	
 	@Column(name = "water_available")
 	private Long waterAvailable;
+	
+	@OneToMany(mappedBy = "farmVillagePlan")
+	private Set<FarmVillagePlanDetail> farmVillagePlanDetail;
 
 	public FarmVillagePlan() {
 		super();
