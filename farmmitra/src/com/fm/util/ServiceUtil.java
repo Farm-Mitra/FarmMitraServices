@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import com.fm.bean.FarmVillagePlan;
+import com.fm.bean.FarmVillagePlanDetail;
 import com.fm.service.bean.Device;
 import com.fm.service.bean.Farm;
 import com.fm.service.bean.FarmVillage;
@@ -26,6 +28,7 @@ public class ServiceUtil {
 		}
 		return fn;
 	}
+
 	public static Farm convertPOJO(com.fm.bean.Farm f) {
 		Farm fn = new Farm();
 		try {
@@ -39,15 +42,7 @@ public class ServiceUtil {
 		}
 		return fn;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	public static List<FarmVillage> convertPOJOListFV(List<com.fm.bean.FarmVillage> fvs) {
 		List<FarmVillage> fnew = new ArrayList<FarmVillage>();
 
@@ -67,7 +62,6 @@ public class ServiceUtil {
 		}
 		return fnew;
 	}
-	
 
 	public static List<Farmer> convertPOJOListF(List<com.fm.bean.Farmer> fs) {
 		List<Farmer> fnew = new ArrayList<Farmer>();
@@ -87,7 +81,6 @@ public class ServiceUtil {
 		}
 		return fnew;
 	}
-	
 
 	public static List<Farm> convertPOJOListFm(List<com.fm.bean.Farm> fs) {
 		List<Farm> fnew = new ArrayList<Farm>();
@@ -109,7 +102,7 @@ public class ServiceUtil {
 		}
 		return fnew;
 	}
-	
+
 	public static List<Device> convertPOJOListD(List<com.fm.bean.Device> fs) {
 		List<Device> fnew = new ArrayList<Device>();
 
@@ -128,5 +121,35 @@ public class ServiceUtil {
 		}
 		return fnew;
 	}
-	
+
+	/* Map Pojo to Hibernate Methods start here */
+
+	public static FarmVillagePlan convertPOJOInverseFvp(Object f) {
+		FarmVillagePlan fn = new FarmVillagePlan();
+		try {
+			BeanUtils.copyProperties(fn, f);
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return fn;
+	}
+
+	public static FarmVillagePlanDetail convertPOJOInverseFvpd(Object f) {
+		FarmVillagePlanDetail fn = new FarmVillagePlanDetail();
+		try {
+			BeanUtils.copyProperties(fn, f);
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return fn;
+	}
+
 }

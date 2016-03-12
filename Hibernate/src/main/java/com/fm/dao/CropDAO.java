@@ -12,7 +12,7 @@ import com.fm.util.HibernateUtil;
 
 public class CropDAO {
 
-	String CROP_QUERY_IN = "from Crop crop where crop.id IN ?";
+	String CROP_QUERY_IN = "from Crop crop where crop.id IN (:ids)";
 
 	public List<Crop> getCropsByIds(List<Long> cropIds) {
 		List<Crop> data = null;
@@ -20,11 +20,15 @@ public class CropDAO {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		try {
 			Query query = session.createQuery(CROP_QUERY_IN);
-			query.setParameter(0, cropIds);
-			return query.list();
-		} catch (HibernateException e) {
+			query.setParameterList("ids", cropIds);
+			data = query.list();
+		}
+		catch (HibernateException e) {
 			e.printStackTrace();
-		} finally {
+		} 
+		catch (Exception e) {
+			
+		}finally {
 			session.close();
 		}
 		return data;
