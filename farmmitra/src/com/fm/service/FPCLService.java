@@ -9,6 +9,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.fm.dao.FPCLDAO;
+import com.fm.service.bean.Capacity;
 import com.fm.service.bean.Device;
 import com.fm.service.bean.Farm;
 import com.fm.service.bean.FarmVillage;
@@ -58,13 +59,14 @@ public class FPCLService {
 	@Path("{fpclid}/waterdetail")
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
-	public int getWaterDetailsForFpcl(@PathParam("fpclid") String fpclid) {
+	public Capacity getWaterDetailsForFpcl(@PathParam("fpclid") String fpclid) {
 		int capacity = 0;
 		List<com.fm.bean.FarmVillage> fvs = dao.getFarmVillageForFpcl(Long.parseLong(fpclid));
 		for (com.fm.bean.FarmVillage farmVillage : fvs) {
 			capacity += farmVillage.getWaterCapacity();
 		}
-		return capacity;
+
+		return new Capacity(capacity);
 	}
 
 	@Path("{fpclid}/projectedprofit")
