@@ -20,7 +20,7 @@ public class Farm {
 
 	private String lattitude;
 
-	private String area;
+	private String farmArea;
 
 	private Date date;
 	
@@ -36,12 +36,12 @@ public class Farm {
 		this.id = id;
 	}
 
-	public Farm(Long fc, String longitude, String lattitude, String area, Date date) {
+	public Farm(Long fc, String longitude, String lattitude, String farmArea, Date date) {
 		super();
 		this.fc = fc;
 		this.longitude = longitude;
 		this.lattitude = lattitude;
-		this.area = area;
+		this.farmArea = farmArea;
 		this.date = date;
 	}
 
@@ -69,12 +69,12 @@ public class Farm {
 		this.lattitude = lattitude;
 	}
 
-	public String getArea() {
-		return area;
+	public String getFarmArea() {
+		return farmArea;
 	}
 
-	public void setArea(String area) {
-		this.area = area;
+	public void setFarmArea(String farmArea) {
+		this.farmArea = farmArea;
 	}
 
 	public Date getDate() {

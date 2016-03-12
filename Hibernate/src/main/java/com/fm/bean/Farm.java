@@ -4,13 +4,11 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -33,14 +31,14 @@ public class Farm {
 	@Column(name = "fc")
 	private Long fc;
 
-	@Column(name = "long")
+	@Column(name = "longt")
 	private String longitude;
 
 	@Column(name = "lat")
 	private String lattitude;
 
 	@Column(name = "area")
-	private String area;
+	private String farmArea;
 
 	@Column(name = "date")
 	private Date date;
@@ -71,12 +69,12 @@ public class Farm {
 		this.id = id;
 	}
 
-	public Farm(Long fc, String longitude, String lattitude, String area, Date date) {
+	public Farm(Long fc, String longitude, String lattitude, String farmArea, Date date) {
 		super();
 		this.fc = fc;
 		this.longitude = longitude;
 		this.lattitude = lattitude;
-		this.area = area;
+		this.farmArea = farmArea;
 		this.date = date;
 	}
 
@@ -104,12 +102,12 @@ public class Farm {
 		this.lattitude = lattitude;
 	}
 
-	public String getArea() {
-		return area;
+	public String getFarmArea() {
+		return farmArea;
 	}
 
-	public void setArea(String area) {
-		this.area = area;
+	public void setArea(String farmArea) {
+		this.farmArea = farmArea;
 	}
 
 	public Date getDate() {
