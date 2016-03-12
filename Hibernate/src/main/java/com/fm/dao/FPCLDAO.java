@@ -28,7 +28,7 @@ public class FPCLDAO {
 		try {
 			FPCL f = (FPCL) session.get(FPCL.class, fpclid);
 			for (FarmVillage farmVillage : f.getFarmVillages()) {
-				farmVillage.getFarms();
+				//farmVillage.getFarms();
 				//farmVillage.setFarmSize(.size());
 				data.add(farmVillage);
 			}

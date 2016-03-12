@@ -46,8 +46,7 @@ public class FarmVillage {
 	@OneToMany(mappedBy = "farmVillage", fetch = FetchType.EAGER)
 	private Set<Farm> farms;
 	
-	@OneToOne
-	@JoinColumn(name = "farm_village_id")
+	@OneToOne(mappedBy="farmVillage")
 	private FarmVillagePlan farmVillagePlan;
 
 	@ManyToOne

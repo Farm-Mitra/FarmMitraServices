@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,8 +23,8 @@ public class FarmVillagePlan {
 	@Column(name = "farm_village_plan_id")
 	private Long id;	
 	
-	@OneToOne
-    @JoinColumn(name="farm_village_id")
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="farm_village_id")
 	private FarmVillage farmVillage;	
 		
 	@Column(name = "start_date")
