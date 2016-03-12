@@ -68,4 +68,10 @@ public class FarmVillage {
 		this.date = new Date();
 	}
 
+	@Override
+	public String toString() {
+		return "FarmVillage [id=" + id + ", name=" + name + ", location=" + location + ", waterCapacity="
+				+ waterCapacity + ", date=" + date + "]";
+	}
+
 }
