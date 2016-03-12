@@ -59,6 +59,21 @@ public class ServiceUtil {
 		}
 		return fn;
 	}
+	
+
+	public static Farmer convertPOJO(com.fm.bean.Farmer f) {
+		Farmer fn = new Farmer();
+		try {
+			BeanUtils.copyProperties(fn, f);
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return fn;
+	}
 
 	public static List<FarmVillage> convertPOJOListFV(List<com.fm.bean.FarmVillage> fvs) {
 		List<FarmVillage> fnew = new ArrayList<FarmVillage>();
@@ -211,5 +226,20 @@ public class ServiceUtil {
 		}
 		return fn;
 	}
+
+	public static Object convertPOJOFInverse(Farmer f) {
+		Farmer fn = new Farmer();
+		try {
+			BeanUtils.copyProperties(fn, f);
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return fn;
+	}
+
 
 }
