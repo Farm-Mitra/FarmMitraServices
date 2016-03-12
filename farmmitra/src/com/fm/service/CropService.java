@@ -38,7 +38,7 @@ public class CropService {
 
 		FarmVillage village = dao.getFarmVillageById(farmId);
 		Integer numberOfFarm = village.getFarms().size();
-		//Integer numberOfFarm = 5;
+		// Integer numberOfFarm = 5;
 		List<Crop> crops = null;
 		if (cropIds != null && !cropIds.isEmpty()) {
 			crops = cropDao.getCropsByIds(cropIds);
@@ -52,7 +52,7 @@ public class CropService {
 		if (crops == null) {
 			return new ArrayList<List<Crop>>();
 		}
-		
+
 		return FarmAllocationUtil.getFieldAllocation(crops.toArray((new Crop[crops.size()])), waterUsage, numberOfFarm);
 
 	}
@@ -73,9 +73,12 @@ public class CropService {
 	public void createFarmPlan(FarmVillagePlan plan) {
 		try {
 			// plan = mapper.readValue(jsonString, FarmVillagePlan.class);
-			helper.create(ServiceUtil.convertPOJOInverseFvp(plan));
+			com.fm.bean.FarmVillagePlan farmVillagedata = ServiceUtil.convertPOJOInverseFvp(plan);
+			helper.create(farmVillagedata);
 			for (FarmVillagePlanDetail detail : plan.getFarmVillagePlanDetail()) {
 				com.fm.bean.FarmVillagePlanDetail farmDetails = new com.fm.bean.FarmVillagePlanDetail();
+
+				farmDetails.setFarmVillagePlanId(farmVillagedata);
 				farmDetails.setCrop(new Crop(detail.getCrop().getId()));
 				farmDetails.setFarm(new com.fm.bean.Farm(detail.getFarm().getId()));
 				helper.create(farmDetails);
@@ -85,6 +88,5 @@ public class CropService {
 		}
 
 	}
-	
 
 }
