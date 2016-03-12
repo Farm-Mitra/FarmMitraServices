@@ -1,6 +1,5 @@
 package com.fm;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -14,14 +13,13 @@ import javax.ws.rs.core.MediaType;
 import com.fm.bean.FarmVillage;
 import com.fm.util.HibernateHelper;
 
-@Path("/soil_character")
+@Path("/farmvillage")
 public class FarmVillageService {
+	HibernateHelper helper = new HibernateHelper();
 
 	@GET
-	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public List<FarmVillage> getFarmVillage() {
-
-		HibernateHelper helper = new HibernateHelper();
 		List<FarmVillage> list = helper.list("FarmVillage");
 		return list;
 	}
@@ -44,16 +42,15 @@ public class FarmVillageService {
 	
 	@Path("{id}")
 	@GET
-	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public FarmVillage getFarmVillage(@PathParam("id") String id) {
-		
-		FarmVillage fv = new FarmVillage("Sandy Soil Brown");
+		FarmVillage fv = (FarmVillage) helper.get(FarmVillage.class, Long.parseLong(id));
 		return fv;
 	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
 	public FarmVillage postFarmVillage(FarmVillage data) {
 		System.out.println(data.getName());
 
