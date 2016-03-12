@@ -69,13 +69,13 @@ public class FPCLService {
 		return new Capacity(capacity);
 	}
 
-	@Path("{fpclid}/projectedprofit")
-	@GET
-	@Produces({ MediaType.APPLICATION_JSON })
-	public List<FarmVillage> getProjectedProfitforFpcl(@PathParam("fpclid") String fpclid) {
-		List<com.fm.bean.FarmVillage> fvs = dao.getFarmVillageForFpcl(Long.parseLong(fpclid));
-		List<FarmVillage> farmVillages = null;// convertPOJOList(fvs);
-		return farmVillages;
-	}
+//	@Path("{fpclid}/projectedprofit")
+//	@GET
+//	@Produces({ MediaType.APPLICATION_JSON })
+//	public List<FarmVillage> getProjectedProfitforFpcl(@PathParam("fpclid") String fpclid) {
+//		List<com.fm.bean.FarmVillage> fvs = dao.getFarmVillageForFpcl(Long.parseLong(fpclid));
+//		List<FarmVillage> farmVillages = null;// convertPOJOList(fvs);
+//		return farmVillages;
+//	}
 
 }

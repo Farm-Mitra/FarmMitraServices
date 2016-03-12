@@ -23,15 +23,7 @@ public class FarmVillagePlan {
 	@OneToOne
     @JoinColumn(name="farm_village_id")
 	private FarmVillage farmVillage;	
-	
-	@OneToOne
-    @JoinColumn(name="farm_id")
-	private Farm farm_id;
-	
-	@OneToOne
-    @JoinColumn(name="crop_id")
-	private Crop crop_id;
-	
+		
 	@Column(name = "start_date")
 	private Date startDate;
 	
@@ -43,5 +35,68 @@ public class FarmVillagePlan {
 	
 	@Column(name = "water_available")
 	private Long waterAvailable;
+
+	public FarmVillagePlan() {
+		super();
+	}
+
+	public FarmVillagePlan(Long id, FarmVillage farmVillage, Date startDate, Date endDate, Date time,
+			Long waterAvailable) {
+		super();
+		this.id = id;
+		this.farmVillage = farmVillage;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.time = time;
+		this.waterAvailable = waterAvailable;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public FarmVillage getFarmVillage() {
+		return farmVillage;
+	}
+
+	public void setFarmVillage(FarmVillage farmVillage) {
+		this.farmVillage = farmVillage;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public Date getTime() {
+		return time;
+	}
+
+	public void setTime(Date time) {
+		this.time = time;
+	}
+
+	public Long getWaterAvailable() {
+		return waterAvailable;
+	}
+
+	public void setWaterAvailable(Long waterAvailable) {
+		this.waterAvailable = waterAvailable;
+	}
 
 }
