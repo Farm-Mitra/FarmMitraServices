@@ -103,8 +103,8 @@ public class Farm {
 
 	@Override
 	public String toString() {
-		return "Farm [id=" + id + ", fc=" + fc + ", longitude=" + longitude + ", lattitude=" + lattitude + ", area="
-				+ area + ", date=" + date + ", farmerName=" + farmerName + ", farmVillageName=" + farmVillageName + "]";
+		return "Farm [id=" + id + ", fc=" + fc + ", longitude=" + longitude + ", lattitude=" + lattitude + ", farmArea="
+				+ farmArea + ", date=" + date + ", farmerName=" + farmerName + ", farmVillageName=" + farmVillageName + "]";
 	}
 
 }
